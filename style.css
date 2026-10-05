@@ -1,7 +1,7 @@
 /* Variáveis CSS - facilitar o uso de temas para formatação */
 :root {
-    --gradiente-fundo: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-    --fundo-cartao: #ffffff;
+    --gradiente-fundo: linear-gradient(to bottom, #fdfbf7 0%, #1191db 100%);
+    --fundo-cartao: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
     --cor-texto: #2d3748;
     --cor-primaria: #6c5ce7;
     ;
@@ -13,7 +13,7 @@
 
 /* Modo escuro (ativado via classe no body) */
 body.modo-escuro {
-    --gradiente-fundo: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+    --gradiente-fundo: linear-gradient(to top, #5b4bc4 0%, #2d3748 100%);
     --fundo-cartao: #1a202c;
     --cor-texto: #f7fafc;
     --cor-borda: #4a5568;
@@ -159,3 +159,9 @@ input[type="text"]:focus{
         transform: translateY(0);
     }
 }
+img {
+    width: 25%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 100%;
+  }
