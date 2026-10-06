@@ -12,19 +12,41 @@
 <body>
     <div class="cartao-aplicacao">
         <header class="cabecalho-aplicacao">
-            <img src="oi.jpg" alt="" width="80" height="80">
-            <h1>Minhas Tarefas ✨</h1>
-            <button class="botao-icone" id="botao-alternar-tema">
-                <i class="fa-solid fa-moon"></i>
-            </button>
+            <div class="info-cabecalho">
+                <img src="oi.jpg" alt="" width="80" height="80">
+                <h1>Minhas Tarefas ⚡</h1>
+            </div>
+            
+            <div class="acoes-cabecalho">
+                <!-- Contador de Foguinho / Sequência -->
+                <div class="foguinho-container" title="Dias seguidos completando tarefas">
+                    <i class="fa-solid fa-fire icon-foguinho"></i>
+                    <span id="contador-foguinho">0</span>
+                </div>
+                <button class="botao-icone" id="botao-alternar-tema">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
         </header>
+
         <div class="caixa-entrada">
             <input type="text" id="campo-tarefa" placeholder="O que vamos fazer hoje?...">
+            
+            <!-- Seleção de Prioridade -->
+            <select id="seletor-prioridade" class="seletor-prioridade">
+                <option value="baixa">Baixa</option>
+                <option value="media" selected>Média</option>
+                <option value="alta">Alta</option>
+            </select>
+
             <button class="botao-principal" id="botao-adicionar">
-                <i class="fa-solid fa-plus"></i>Adicionar</button>
+                <i class="fa-solid fa-plus"></i>Adicionar
+            </button>
         </div>
+
         <ul class="lista-tarefas" id="lista-tarefas">
         </ul>
+
         <footer class="rodape-aplicacao">
             <span id="contador-tarefas">0 tarefas na lista</span>
         </footer>

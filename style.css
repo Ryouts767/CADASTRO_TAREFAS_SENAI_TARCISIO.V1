@@ -1,14 +1,19 @@
 /* Variáveis CSS - facilitar o uso de temas para formatação */
 :root {
     --gradiente-fundo: linear-gradient(to bottom, #fdfbf7 0%, #1191db 100%);
-    --fundo-cartao: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    --fundo-cartao: linear-gradient(to top, #a8edea 0%, #ffffff 100%);
     --cor-texto: #2d3748;
     --cor-primaria: #6c5ce7;
-    ;
     --cor-primaria-destaque: #5b4bc4;
     --cor-borda: #edf2f7;
+    --cor-borda-preto: #000000;
     --cor-perigo: #ff7675;
     --cor-concluido: #a0aec0;
+    
+    /* Cores de Prioridade */
+    --prioridade-alta: #ff4757;
+    --prioridade-media: #ffa502;
+    --prioridade-baixa: #2ed573;
 }
 
 /* Modo escuro (ativado via classe no body) */
@@ -40,7 +45,7 @@ body {
     background: var(--fundo-cartao);
     color: var(--cor-texto);
     width: 100%;
-    max-width: 420px;
+    max-width: 460px;
     border-radius: 20px;
     padding: 30px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
@@ -53,9 +58,44 @@ body {
     margin-bottom: 25px;
 }
 
+.info-cabecalho {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .cabecalho-aplicacao h1 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 700;
+}
+
+.acoes-cabecalho {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Estilos do Foguinho */
+.foguinho-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(255, 121, 63, 0.15);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: #ff6b81;
+}
+
+.icon-foguinho {
+    color: #ff4757;
+    font-size: 1.1rem;
+    animation: pulso-fogo 1.5s infinite ease-in-out;
+}
+
+@keyframes pulso-fogo {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
 }
 
 .botao-icone {
@@ -68,14 +108,16 @@ body {
 
 .caixa-entrada {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
 input[type="text"] {
     flex: 1;
+    min-width: 180px;
     padding: 12px 15px;
-    border: 2px solid var(--cor-borda);
+    border: 2px solid var(--cor-borda-preto);
     border-radius: 12px;
     outline: none;
     font-size: 0.95rem;
@@ -83,15 +125,63 @@ input[type="text"] {
     color: var(--cor-texto);
 }
 
-input[type="text"]:focus{
+body.modo-escuro input[type="text"] {
+    flex: 1;
+    min-width: 180px;
+    padding: 12px 15px;
+    border: 2px solid var(--cor-texto);
+    border-radius: 12px;
+    outline: none;
+    font-size: 0.95rem;
+    background: transparent;
+    color: var(--cor-texto);
+}
+
+input[type="text"]:focus {
     border-color: var(--cor-primaria);
+}
+
+body.modo-escuro input[type="text"]:focus {
+    border-color: var(--cor-primaria);
+}
+
+.seletor-prioridade {
+    padding: 12px 8px;
+    border: 2px solid var(--cor-borda-preto);
+    border-radius: 12px;
+    outline: none;
+    font-size: 0.85rem;
+    background: transparent;
+    color: var(--cor-texto);
+    cursor: pointer;
+}
+
+body.modo-escuro .seletor-prioridade {
+    padding: 12px 8px;
+    border: 2px solid var(--cor-texto);
+    border-radius: 12px;
+    outline: none;
+    font-size: 0.85rem;
+    background: transparent;
+    color: var(--cor-texto);
+    cursor: pointer;
+}
+
+.seletor-prioridade option {
+    background-color: #fff;
+    color: #333;
+}
+
+body.modo-escuro .seletor-prioridade option {
+    background-color: #1a202c;
+    color: #f7fafc;
 }
 
 .botao-principal {
     background: var(--cor-primaria);
     color: white;
     border: none;
-    padding: 12px 18px;
+    padding: 12px 16px;
     border-radius: 12px;
     font-weight: 600;
     cursor: pointer;
@@ -108,6 +198,7 @@ input[type="text"]:focus{
     width: 100%;
     overflow-y: auto;
 }
+
 .item-tarefa {
     display: flex;
     align-items: center;
@@ -117,6 +208,35 @@ input[type="text"]:focus{
     border-radius: 10px;
     margin-bottom: 10px;
     animation: aparecer 0.3s ease;
+}
+
+.conteudo-tarefa {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    word-break: break-word;
+}
+
+/* Etiquetas de Prioridade */
+.etiqueta-prioridade {
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 3px 6px;
+    border-radius: 6px;
+    color: white;
+    text-transform: uppercase;
+}
+
+.prioridade-alta {
+    background-color: var(--prioridade-alta);
+}
+
+.prioridade-media {
+    background-color: var(--prioridade-media);
+}
+
+.prioridade-baixa {
+    background-color: var(--prioridade-baixa);
 }
 
 .item-tarefa.concluido span {
@@ -133,8 +253,12 @@ input[type="text"]:focus{
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: var(--cor-texto);
+}
+
+.botao-acao.concluir:hover {
+    color: var(--prioridade-baixa);
 }
 
 .botao-acao.excluir:hover {
@@ -153,15 +277,15 @@ input[type="text"]:focus{
         opacity: 0;
         transform: translateY(10px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
+
 img {
-    width: 25%;
-    max-width: 500px;
-    height: auto;
+    width: 60px;
+    height: 60px;
     border-radius: 100%;
-  }
+    object-fit: cover;
+}
